@@ -1,13 +1,13 @@
 import { createPool } from 'mysql2/promise';
 
-const CONNECTION_TIMEOUT =7 * 60 * 1000; // Délai d'expiration de la connexion en millisecondes
+const CONNECTION_TIMEOUT =7 * 60 * 60 * 1000; // Délai d'expiration de la connexion en millisecondes
 
 // Créez un pool de connexions avec une limite de connexions maximale
 const pool = createPool({
-  host: 'localhost',
-  user: 'c2152280c_leonce',
-  password: 'Xe6)6K5yYNJ0',
-  database: 'c2152280c_teramaflix',
+  host: 'www.db4free.net',
+  user: 'terama_20819u',
+  password: 'Promotion@11',
+  database: 'terama_20819u',
   connectionLimit: 50, // Nombre maximal de connexions
 });
 
@@ -24,7 +24,6 @@ const resetConnectionTimeout = (connection) => {
 // Vérifiez si la connexion est ouverte avant d'exécuter une requête
 const executeQuery = async (query, params) => {
   let connection;
-
   try {
     connection = await pool.getConnection();
     resetConnectionTimeout(connection); // Réinitialiser le délai d'expiration de la connexion

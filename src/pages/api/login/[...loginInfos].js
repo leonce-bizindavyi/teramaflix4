@@ -26,6 +26,7 @@ export default async function handler(req, res) {
     const [mail,password] = req.query.loginInfos
     const validatedData = loginValidator.parse({mail,password});   
     const [results] = await executeQuery('CALL login(?)',[mail])
+    console.log("fdddddddddddddddddddddddddd",results)
   // Vérifier les informations d'identification de l'utilisateur
   if (results.length === 0) {
     return res.status(404).json({ message: 'Email introuvable' });
@@ -69,7 +70,4 @@ export default async function handler(req, res) {
   }catch(error){
     res.status(401).json({error,message:'validationError'});
   }
-
-  
-  
 }
