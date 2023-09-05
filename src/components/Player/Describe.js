@@ -133,7 +133,7 @@ useEffect(() => {
   };
 
 
-  const videoUrl = `http://localhost:3000/Watch?v=${video.uniid}`; 
+  const videoUrl = `${process.env.NEXT_PUBLIC_URL}/Watch?v=${video.uniid}`; 
   
   const shareOnFacebook = () => {
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(videoUrl)}`;

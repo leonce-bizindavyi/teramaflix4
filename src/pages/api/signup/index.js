@@ -97,7 +97,7 @@ export default async function handler(req, res) {
               to: userMail,
               subject: 'Validation de votre compte',
               html: `Hello ${userName} ${userPrenom} ,<br><br>Thanks your account created successfully<br>
-                    Please click the below link to activate your account<br><br>"<br><a href="http://localhost:3000/activate?uniid=${uniid}">
+                    Please click the below link to activate your account<br><br>"<br><a href="${process.env.NEXT_PUBLIC_URL}/activate?uniid=${uniid}">
                     <button style="
                     display: inline-block;
                     padding: 10px 20px;
