@@ -349,7 +349,7 @@ if (!videoprops) return null
       <video ref={videoRef} 
        onVolumeChange={(e)=>setControls({...controls,volume:e.currentTarget.volume})} 
        onTimeUpdate={(e)=>{handleCurrentTime(e),setControls({...controls,currentTime:e.currentTarget.currentTime})}}  
-       src={`/Videos/${videoprops.Video}`} onEnded={()=>handleNext(videoprops.NextVideo)} className='rounded' 
+       src={`https://www.youtube.com/embed/Qrw9oCpgIMw`} onEnded={()=>handleNext(videoprops.NextVideo)} className='rounded' 
        autoPlay/>
     </div> 
     </>
