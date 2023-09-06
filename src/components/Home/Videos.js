@@ -9,13 +9,15 @@ function Videos() {
   const [hasMore,setHasMore]=useState(true)
   
   useEffect(() => {
-    if(auto.session){
-      fetchVideos(auto.session)
+    if(auto.session === 'unlogged'){
+      fetchVideos(0)
+    }else{
+      fetchVideos(auto.session.ID)
     }
   }, [auto])
   
   const fetchVideos = async (user) =>{
-    const response = await fetch(`/api/posts/${user.ID}/0/6`)
+    const response = await fetch(`/api/posts/${user}/0/6`)
     const data = await response.json()
     if(data[0]) setVideos(data)
   }
@@ -23,10 +25,17 @@ function Videos() {
 if(videos==null) return (<div className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>Loading ...</div>)
 
 const getMoreVideos=async()=>{
-  const res=await fetch(`/api/posts/${auto.session.ID}/${videos.length}/6`)
-  const newVideos = await res.json()
-  if(newVideos.length==0)setHasMore(false)
-    setVideos(videos=>[...videos, ...newVideos])
+  if(auto.session === 'unlogged'){
+    const res=await fetch(`/api/posts/${0}/${videos.length}/6`)
+    const newVideos = await res.json()
+    if(newVideos.length==0)setHasMore(false)
+      setVideos(videos=>[...videos, ...newVideos])
+  }else{
+    const res=await fetch(`/api/posts/${auto.session.ID}/${videos.length}/6`)
+    const newVideos = await res.json()
+    if(newVideos.length==0)setHasMore(false)
+      setVideos(videos=>[...videos, ...newVideos])
+  }
 }
  
   
