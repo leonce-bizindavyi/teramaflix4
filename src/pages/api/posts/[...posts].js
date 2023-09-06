@@ -2,6 +2,7 @@ import executeQuery from '@/Config/db4';
 
 export default async function handler(req, res) {
   const [user,start, limit] = req.query.posts
+  console.log(user,start, limit)
   try {
     // Exécuter la requête SQL pour récupérer les videos
     const rows = await executeQuery('CALL myVideo(?, ?, ?)', [user, start, limit]);

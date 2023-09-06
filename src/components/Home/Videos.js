@@ -9,10 +9,12 @@ function Videos() {
   const [hasMore,setHasMore]=useState(true)
   
   useEffect(() => {
-    if(auto.session === 'unlogged'){
-      fetchVideos(0)
-    }else{
-      fetchVideos(auto.session.ID)
+    if(auto.session){
+      if(auto.session === 'unlogged'){
+        fetchVideos(0)
+      }else{
+        fetchVideos(auto.session.ID)
+      }
     }
   }, [auto])
   
