@@ -16,7 +16,15 @@ function Histories() {
       setVideos(videos=>[...videos, ...newVideos])
   }
   useEffect(() => {
-    if(auto.session){
+    if(auto.session === 'unlogged'){
+      const fetchVideos = async () =>{
+        const user = auto.session
+        const response = await fetch(`/api/posts/histories/${0}/0/8`)
+        const data = await response.json()
+        setVideos(data)
+    }
+    fetchVideos()
+    }else{
       const fetchVideos = async () =>{
         const user = auto.session
         const response = await fetch(`/api/posts/histories/${user.ID}/0/8`)

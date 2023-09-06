@@ -12,10 +12,18 @@ function Videos() {
   const getMoreVideos=async()=>{
     const post = router.query.v
     const user = auto.session
-    const res=await fetch(`/api/posts/videos/${post}/${videos.length}/6/${user.ID}`)
-    const newVideos = await res.json()
-    if(newVideos.length==0)setHasMore(false)
-      setVideos(videos=>[...videos, ...newVideos])
+    if(user === 'unlogged'){
+      const res=await fetch(`/api/posts/videos/${post}/${videos.length}/6/${0}`)
+      const newVideos = await res.json()
+      if(newVideos.length==0)setHasMore(false)
+        setVideos(videos=>[...videos, ...newVideos])
+    }else{
+      const res=await fetch(`/api/posts/videos/${post}/${videos.length}/6/${user.ID}`)
+      const newVideos = await res.json()
+      if(newVideos.length==0)setHasMore(false)
+        setVideos(videos=>[...videos, ...newVideos])
+    }
+    
   }
   useEffect(() => {
     const fetchVideos = async (post,user) => {
@@ -26,7 +34,12 @@ function Videos() {
       }
     };
     if(router.query.v && auto.session){
-      fetchVideos(router.query.v,auto.session)
+      if(auto.session === 'unlogged'){
+        fetchVideos(router.query.v,0)
+      }else{
+        fetchVideos(router.query.v,auto.session.ID)
+      }
+      
     }
   }, [router,auto])
   
