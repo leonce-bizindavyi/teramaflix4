@@ -18,7 +18,7 @@ function Videos() {
     const response = await fetch(`/api/posts/${user.ID}/0/6`)
     const data = await response.json()
     if(data[0]) setVideos(data)
-}
+  }
 
 if(videos==null) return (<div className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>Loading ...</div>)
 

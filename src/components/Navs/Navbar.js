@@ -72,8 +72,7 @@ function Navbar() {
     return () => clearInterval(interval);
   }, []); 
      
-  if (auto.session === 'unlogged') router.push('/login')
-  if (!auto.session) return null;
+  
 
       const viewed_notification = async () => {
         try {
@@ -125,53 +124,55 @@ function Navbar() {
                           </svg>
                     </button>
                 </div>
-                <div className="buttons flex flex-initial sm:flex space-x-3 sm:items-center sm:justify-center items-center justify-center w-full sm:w-64 h-full   ">
-                <button onClick={handleSmsearch}  id="searchBtn"  className=" hover:bg-gray-200 w-10 h-10 lg:hidden sm:block">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="black" className="">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
-
-                    </button>
-                    <Link href='/upload'>
-                        <button id="image" className="hover:bg-gray-200 flex rounded-full items-center p-1 lg:w-10 lg:h-10 md:w-8 md:h-6 w-8 h-8">
-                            <Image width={80} height={80} className="lg:w-full lg:h-full w-full  h-full   my-1 ml-15 " 
-                            src="/img/create_video.png" alt="create_video"/>
-                        </button>
-                    </Link>
-
-
-                    <button
-                id="image"
-                className="p-0 ml-4"
-              >
-                <div className="hover:bg-gray-200 rounded-full w-11 h-11">
-                  <svg  onClick={handleNotificationClick} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="black" className="w-full h-full ">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                  </svg>
-
-                  
-
-                  {notifCounter > 0 && (
-                    <span className="absolute top-2 right-[8%] transform translate-x-2/3 -translate-y-1/3 bg-red-500 text-white px-2 m-2 py-1 rounded-full text-xs">
-                      {notifCounter}
-                    </span>
-                  )}
-                </div>
-              </button>
+{!auto.session || auto.session === "unlogged" ?
+  
+<div className="buttons flex flex-initial sm:flex space-x-3 sm:items-center sm:justify-center items-center justify-center w-full sm:w-64 h-full   ">
+    <Link href='/login' className="bg-blue-500 text-white font-bold rounded-lg w-auto h-8 px-5 py-3 flex flex-row items-center justify-center hover:bg-blue-600">Login</Link>
+  </div>
+:
+  <div className="buttons flex flex-initial sm:flex space-x-3 sm:items-center sm:justify-center items-center justify-center w-full sm:w-64 h-full   ">
+    <button onClick={handleSmsearch}  id="searchBtn"  className=" hover:bg-gray-200 w-10 h-10 lg:hidden sm:block">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="black" className="">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+      </svg>
+    </button>
+    <Link href='/upload'>
+        <button id="image" className="hover:bg-gray-200 flex rounded-full items-center p-1 lg:w-10 lg:h-10 md:w-8 md:h-6 w-8 h-8">
+            <Image width={80} height={80} className="lg:w-full lg:h-full w-full  h-full   my-1 ml-15 " 
+            src="/img/create_video.png" alt="create_video"/>
+        </button>
+    </Link>
 
 
-                   <button id="image" className="p-0">
-                    {
-                        auto.session.Photo ?
-                        <Image width={80} height={80}  className="w-8 h-8 rounded-full" title={`${auto.session.PageName}`}
-                        src={`/Thumbnails/${auto.session.Photo}`} alt='profile' onClick={()=>handleAcPop()}/>
-                        :
-                        <Image width={80} height={80}  className="w-8 h-8 rounded-full" title={`${ auto.session.PageName}`}
-                        src="/img/logo.png" alt='profile' onClick={()=>handleAcPop()}/>
-                    }
-                   </button>
-                        
-                </div>
+    <button className="p-0 ml-4">
+      <div className="hover:bg-gray-200 rounded-full w-11 h-11">
+        <svg  onClick={handleNotificationClick} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="black" className="w-full h-full ">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+        </svg>
+        {notifCounter > 0 && (
+          <span className="absolute top-2 right-[8%] transform translate-x-2/3 -translate-y-1/3 bg-red-500 text-white px-2 m-2 py-1 rounded-full text-xs">
+            {notifCounter}
+          </span>
+        )}
+      </div>
+    </button>
+
+
+   <button id="image" className="p-0">
+    {
+        auto.session.Photo ?
+        <Image width={80} height={80}  className="w-8 h-8 rounded-full" title={`${auto.session.PageName}`}
+        src={`/Thumbnails/${auto.session.Photo}`} alt='profile' onClick={()=>handleAcPop()}/>
+        :
+        <Image width={80} height={80}  className="w-8 h-8 rounded-full" title={`${ auto.session.PageName}`}
+        src="/img/logo.png" alt='profile' onClick={()=>handleAcPop()}/>
+    }
+   </button>
+        
+  </div>
+}
+                
+                
                 
             </nav>
         </div>
