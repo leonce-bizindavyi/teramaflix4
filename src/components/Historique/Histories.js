@@ -10,15 +10,21 @@ function Histories() {
   let previousDate = null;
   const getMoreVideos=async()=>{
     const user = auto.session
-    const res=await fetch(`/api/posts/histories/${user.ID}/${videos.length}/6`)
+    if(user === 'unlogged'){
+    const res=await fetch(`/api/posts/histories/${0}/${videos.length}/6`)
     const newVideos = await res.json()
     if(newVideos.length==0)setHasMore(false)
       setVideos(videos=>[...videos, ...newVideos])
+    }else{
+      const res=await fetch(`/api/posts/histories/${user.ID}/${videos.length}/6`)
+      const newVideos = await res.json()
+      if(newVideos.length==0)setHasMore(false)
+        setVideos(videos=>[...videos, ...newVideos])
+    }
   }
   useEffect(() => {
     if(auto.session === 'unlogged'){
       const fetchVideos = async () =>{
-        const user = auto.session
         const response = await fetch(`/api/posts/histories/${0}/0/8`)
         const data = await response.json()
         setVideos(data)
