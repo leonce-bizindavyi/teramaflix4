@@ -4,10 +4,10 @@ const CONNECTION_TIMEOUT =7 * 60 * 60 * 1000; // Délai d'expiration de la conne
 
 // Créez un pool de connexions avec une limite de connexions maximale
 const pool = createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'teramaflix',
+  host: 'www.db4free.net',
+  user: 'terama_20819u',
+  password: 'Promotion@11',
+  database: 'terama_20819u',
   connectionLimit: 50, // Nombre maximal de connexions
 });
 
