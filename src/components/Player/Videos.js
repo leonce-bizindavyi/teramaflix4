@@ -27,7 +27,7 @@ function Videos() {
   }
   useEffect(() => {
     const fetchVideos = async (post,user) => {
-      const response = await fetch(`/api/posts/videos/${post}/0/7/${user.ID} `);
+      const response = await fetch(`/api/posts/videos/${post}/0/7/${user} `);
       const data = await response.json();
       if(data.length !== 0){
         setVideos(data);
