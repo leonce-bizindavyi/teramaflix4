@@ -23,7 +23,7 @@ function Videos(props){
     
   useEffect(() => {
       const AllPosts = async ()=>{
-        const response = await fetch(`http://localhost:3000/api/videos/allVideo/${uniid}`)
+        const response = await fetch(`/api/videos/allVideo/${uniid}`)
         const data =await response.json()
         setVideo(data)
     };
@@ -32,7 +32,7 @@ function Videos(props){
 
     const handledelete = async () =>{
         try{
-            const response = await fetch(`http://localhost:3000/api/deletePost/${uniid}`)
+            const response = await fetch(`/api/deletePost/${uniid}`)
             if(response.ok){
               const data = await response.json();
               if (data.affectedRows == 1) {

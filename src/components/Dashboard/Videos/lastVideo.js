@@ -17,7 +17,7 @@ function LastPost({ uniid ,setallMessage}) {
     videoId = router.query.w;
     useEffect(() => {
       async function fetchLastPost() {
-        const response = await fetch(`https://burundientempsreel.store/api/videos/${videoId}`);
+        const response = await fetch(`/api/videos/${videoId}`);
         const data = await response.json();
         const result = data[0];
         setVideo(result);
@@ -49,7 +49,7 @@ function LastVideo({uniid}){
       const val=event.target.value
       const boolValue = val === "1" ? true : false;
       try{
-          const response = await fetch('https://burundientempsreel.store/api/visibility',{
+          const response = await fetch('/api/visibility',{
             method:'PUT',
             headers:{
               'content-Type':'application/json'
@@ -95,7 +95,7 @@ function LastVideo({uniid}){
       console.log("Vous essayez d'envoyer un message vide!" )
     }
     else{
-      const response = await fetch('https://burundientempsreel.store/api/SendMail',{
+      const response = await fetch('/api/SendMail',{
         method:'PUT',
         headers:{
           'content-Type':'application/json'
