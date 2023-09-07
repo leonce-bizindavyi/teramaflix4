@@ -43,6 +43,7 @@ const getMoreVideos=async()=>{
   
   return (
     <>
+   
     <InfiniteScroll
     dataLength={videos.length}
     next={getMoreVideos}
@@ -52,11 +53,14 @@ const getMoreVideos=async()=>{
       <p style={{textAlign:"center"}}><b>You have seen it all</b></p>
     }>
     <div id="load_data" className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>
+    
       {
         videos?.map(video=>{
           return <Video key={video.ID} video={video} />
         })
-      }      
+      }
+        
+             
     </div>  
     </InfiniteScroll> 
     </>

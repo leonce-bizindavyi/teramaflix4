@@ -19,25 +19,36 @@ function ShortVideo() {
   }
   const addVideo = async () => {
     const user = auto.session;
-    const response = await fetch(`/api/short/${user.ID}/${start}/${limit}`)
-    const data = await response.json()
-    if(data.length!=0) {
-      setVideos([...videos, data[0]]);
-      setStart(start+1)
+    if(user==='unlogged'){
+      const response = await fetch(`/api/short/${0}/${start}/${limit}`)
+      const data = await response.json()
+      if(data.length!=0) {
+        setVideos([...videos, data[0]]);
+        setStart(start+1)
+      }
+    }else{
+      const response = await fetch(`/api/short/${user.ID}/${start}/${limit}`)
+      const data = await response.json()
+      if(data.length!=0) {
+        setVideos([...videos, data[0]]);
+        setStart(start+1)
+      }
     }
   };
 
   useEffect(() => {
-    if(auto.session){
-      const fetchVideos = async (user) =>{
-      const response = await fetch(`/api/short/${user.ID}/0/2`)
+    const fetchVideos = async (user) =>{
+      const response = await fetch(`/api/short/${user}/0/2`)
       const data = await response.json()
       console.log(data)
       setStart(2)
       setLimit(1)
       setVideos(data)
       }
-      fetchVideos(auto.session)
+    if(!auto.session || auto.session==='unlogged'){
+      fetchVideos(0)
+    }else{
+      fetchVideos(auto.session.ID)
     }
   }, [auto])
   
