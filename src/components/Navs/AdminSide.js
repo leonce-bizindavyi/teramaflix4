@@ -11,7 +11,7 @@ function AdminSide({isActive}) {
         router.push('/dashboard')
     }
     const LastPost = async ()=>{
-        const response = await fetch('/api/videos/lastVideo')
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/videos/lastVideo`)
         const data =await response.json()
         setVideo(data[0])
     }
