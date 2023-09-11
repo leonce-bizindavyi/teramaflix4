@@ -54,7 +54,9 @@ const getMoreVideos=async()=>{
       <p style={{textAlign:"center"}}><b>You have seen it all</b></p>
     }>
     <div id="load_data" className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>
-    <Adsense />
+    <div className={styles.videocontainer}>
+      <Adsense />
+      </div>
       {
         videos?.map(video=>{
           return <Video key={video.ID} video={video} />
