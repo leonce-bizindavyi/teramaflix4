@@ -3,6 +3,7 @@ import Video from './Video'
 import InfiniteScroll from "react-infinite-scroll-component";
 import styles from '@/styles/Home.module.css'
 import { SessionContext } from '../context/Auth';
+import Adsense from '../Adsense/Adsense';
 function Videos() {
   const auto = useContext(SessionContext)
   const [videos, setVideos] = useState(null)
@@ -53,7 +54,7 @@ const getMoreVideos=async()=>{
       <p style={{textAlign:"center"}}><b>You have seen it all</b></p>
     }>
     <div id="load_data" className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>
-    
+    <Adsense />
       {
         videos?.map(video=>{
           return <Video key={video.ID} video={video} />
