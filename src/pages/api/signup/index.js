@@ -64,29 +64,22 @@ export default async function handler(req, res) {
           console.log('error in sql for checking Mail',error)
         }
       }
-        try {
-          const userName=req.body.name
-          const userPrenom=req.body.prenom
-          const userMail=req.body.mail
-          const userPassword=req.body.password
-          const uniid = uuidv4()
-          const uName=userName+' '+userPrenom
-        // const date_activation=new date()
+      try {
+        const userName=req.body.name
+        const userPrenom=req.body.prenom
+        const userMail=req.body.mail
+        const userPassword=req.body.password
+        const uniid = uuidv4()
+        const uName=userName+' '+userPrenom
 
         const isUnique=await checkEmailUniqueness(userMail);
         if(isUnique!=="true"){  
         res.status(402).json({response:{data:'errorMail',message:'cet email est déjà utilisé avec un  utre utilisateur.'}});
         }
         else{
-        const registerValidation=registerValidator.parse({userName,userPrenom,userMail,userPassword})
-
-          
-          
-          
-            const saltrounds=10
-            const salt=await bcrypt.genSalt(saltrounds)
-            const hashedPassword=await bcrypt.hash(userPassword,salt)
-          
+          const saltrounds=10
+          const salt=await bcrypt.genSalt(saltrounds)
+          const hashedPassword=await bcrypt.hash(userPassword,salt)
           try {
             // Exécuter la requête SQL pour récupérer les videos
             const rows = await executeQuery( `CALL adduser(?,?,?,?)`, [uniid,uName,userMail,hashedPassword]);
@@ -114,24 +107,18 @@ export default async function handler(req, res) {
                 console.log(error);
               } else {
                 console.log('E-mail envoyé: ' + info.response);
-               // res.status(200).json({ name: 'John Doe' })
               }
             });
 
             // Renvoyer les résultats de la requête sous forme de réponse JSON
             res.status(200).json({response:{data:rows[0],message:'success'}})
-            // res.status(200).json(rows[0]);
           } catch (error) {
             console.error(error);
             res.status(500).json({response:{data:"sqlError",dat:error,message: 'Erreur lors de l\'insertion à la base de données.'} });
           }
-          }  
-  
+        }  
+    }catch (error) {
+      res.status(401).json({response:{data:error,message:'validationError'}});
     }
-         catch (error) {
-          res.status(401).json({response:{data:error,message:'validationError'}});
-        }
-        
-   
-      }
+  }
 }
