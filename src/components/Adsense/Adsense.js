@@ -25,13 +25,11 @@ const Adsense = () => {
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </Head>
     <div>
-      <ins
-        className="adsbygoogle h-[50%]"
-        data-ad-client="ca-pub-8097044169349946"
-        data-ad-slot="8028293203"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
+    <ins class="adsbygoogle h-[50%]"
+     data-ad-client="ca-pub-8097044169349946"
+     data-ad-slot="5582835524"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
     </div>
     </>
   );

@@ -42,6 +42,7 @@ function UploadDrop() {
             }
       }
       fetchVideos()
+      fetchUploads()
     }   
   }, [auth])
    const handleUpload = async (videos) => {
