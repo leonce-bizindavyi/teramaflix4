@@ -49,11 +49,17 @@ export default function SwipperSlide() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        
+
         {
-            videos.map(video=>{
+            videos.map((video,id)=>{
                 return (
-                    <SwiperSlide  key={video.ID}><Slide video={video} /></SwiperSlide>
+                  <>
+                  {id == 5 ? 
+                  <SwiperSlide  key={video.ID}><iframe data-aa='2259101' src='//ad.a-ads.com/2259101?size=728x90' style={{width:728+'px', height:90+'px', border:0+'px', padding:0, overflow:'hidden', backgroundColor: 'transparent'}}></iframe></SwiperSlide>
+                  :
+                  <SwiperSlide  key={video.ID}><Slide video={video} /></SwiperSlide>
+                  }
+                  </>
                 )
             })
         }

@@ -60,7 +60,7 @@ const getMoreVideos=async()=>{
       src="//ad.a-ads.com/2259087?size=728x90"
       style={{
         width: '100%',
-        height: '170px',
+        height: 170+'px',
         border: '0px',
         padding: '0',
         overflow: 'hidden',
