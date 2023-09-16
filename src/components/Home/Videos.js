@@ -55,15 +55,13 @@ const getMoreVideos=async()=>{
     }>
     <div id="load_data" className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>
     <div className={styles.videocontainer}>
-      <Adsense />
+    <iframe data-aa="2259087" src="//ad.a-ads.com/2259087?size=728x90" style="width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;"></iframe>
       </div>
       {
         videos?.map(video=>{
           return <Video key={video.ID} video={video} />
         })
-      }
-        
-             
+      }  
     </div>  
     </InfiniteScroll> 
     </>
