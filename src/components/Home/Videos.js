@@ -55,18 +55,7 @@ const getMoreVideos=async()=>{
     }>
     <div id="load_data" className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>
     <div className={styles.videocontainer}>
-    <iframe
-      data-aa="2259087"
-      src="//ad.a-ads.com/2259087?size=100x170"
-      style={{
-        width: '100%',
-        height: 170+'px',
-        border: '0px',
-        padding: '0',
-        overflow: 'hidden',
-        backgroundColor: 'transparent'
-      }}
-    ></iframe>
+    <Adsense />
       </div>
       {
         videos?.map(video=>{

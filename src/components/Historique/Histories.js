@@ -52,6 +52,18 @@ function Histories() {
     }>
       <div className="Uploads flex flex-col w-full h-full bg-white rounded-3xl">
         <div className="uploadsContainer w-full h-full pt-6 overflow-y-auto">
+          <iframe
+            data-aa="2259087"
+            src="//ad.a-ads.com/2259087?size=100x170"
+            style={{
+              width: '100%',
+              height: 170+'px',
+              border: '0px',
+              padding: '0',
+              overflow: 'hidden',
+              backgroundColor: 'transparent'
+            }}
+          ></iframe>
           {videos.map((video, index) => {
             const currentDate = video.DateView.substring(0, 10); // Obtenir la date actuelle de la vidéo
             const showTitleAndLine = currentDate !== previousDate;

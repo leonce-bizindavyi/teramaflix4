@@ -36,6 +36,8 @@ function Results() {
     }>
         <div className="Uploads flex flex-col  w-full h-full  bg-white rounded-3xl ">
             <div className=" uploadsContainer w-full h-full pt-6 overflow-y-auto   ">
+              
+    <iframe data-aa='2259101' src='//ad.a-ads.com/2259101?size=728x90' style={{width:'100%', height:'100%', border:0+'px', padding:0, overflow:'hidden', backgroundColor: 'transparent'}}></iframe>
               {
                 videos?.map(video=>{
                   return <Result key={video.ID} video={video} />
