@@ -10,7 +10,7 @@ function Signup() {
     const [loading, setLoading] = useState(false);
     const [inserted,setInserted]=useState(false)
     const initialValues = {
-        nom: "",
+        name: "",
         prenom: "",
         mail: "",
         password: "",
@@ -25,16 +25,12 @@ function Signup() {
         setShowConfirm(!showConfirm)
       }
     const validationSchema = Yup.object().shape({
-        nom: Yup.string().required("You must input a nom !").min(3, "Nom must be at least 3 characters!"),
-        prenom: Yup.string().required("You must input a prenom !").min(3, "Prenom must be at least 3 characters!"),
+        name: Yup.string().required("You must input a first name !").min(3, "First name must be at least 3 characters!"),
+        prenom: Yup.string().required("You must input a last name !").min(3, "Last name must be at least 3 characters!"),
         mail: Yup.string().required("You must input a mail !").email("Invalid email address!"),
         password: Yup.string()
             .required("You must input a password !")
-            .min(7, "Password must be at least 7 characters!")
-            .matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]+$/,
-                "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character!"
-            ),
+            .min(6, "Password must be at least 6 characters!"),
         confirm: Yup.string()
             .required("You must input a confirm !")
             .oneOf([Yup.ref("password")], "Confirm password must match the password!"),
@@ -53,7 +49,7 @@ function Signup() {
           setLoading(false);
           if(response.response.data === "errorMail"){
 
-          }else if(response.response.message !=="success"){
+          }else if(response.response.message ==="success"){
             setInserted(true)
             router.push('/login')
           }
@@ -76,10 +72,10 @@ function Signup() {
                     <h2  className="flex justify-center font-bold text-blue-600">First Name</h2>
                 </div>       
                 <div  className="flex justify-center">
-                    <Field id="inputCreateUser" placeholder="Your first name" name="nom" className="rounded-md h-10 w-72 shadow-md ring shadow-blue-500 mt-2 text-blue-600 hover:ring-blue-500
+                    <Field id="inputCreateUser" placeholder="Your first name" name="name" className="rounded-md h-10 w-72 shadow-md ring shadow-blue-500 mt-2 text-blue-600 hover:ring-blue-500
                      p-6 font-medium italic focus:outline-none" />
                 </div>
-                <ErrorMessage name="nom" className='text-red-600' component="span"/>
+                <ErrorMessage name="name" className='text-red-600' component="span"/>
             </div>
             {/* <!--fin first name-->
              <!--debut last name--> */}

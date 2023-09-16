@@ -57,7 +57,7 @@ const getMoreVideos=async()=>{
     <div className={styles.videocontainer}>
     <iframe
       data-aa="2259087"
-      src="//ad.a-ads.com/2259087?size=728x90"
+      src="//ad.a-ads.com/2259087?size=100x170"
       style={{
         width: '100%',
         height: 170+'px',

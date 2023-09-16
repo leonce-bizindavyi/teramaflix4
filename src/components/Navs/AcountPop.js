@@ -7,6 +7,7 @@ function AcountPop({auto}) {
         const response = await fetch(`/api/logout`);
     if (response.ok) {
       const data = await response.json();
+      console.log(data)
       if(data.name===true){
         router.push('/login')
       }else{

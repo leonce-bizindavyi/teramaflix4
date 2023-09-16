@@ -4,29 +4,14 @@ import { serialize } from 'cookie';
 import * as z from 'zod';
 import executeQuery from "@/Config/db4";
 
-const loginValidator=z.object({
-  mail:z
-  .string()
-  .email({
-    message:'saisissez un email valide'
-  }),
-  password:z
-  .string()
-  .min(7,{
-    message:'le mot de passe doit être supérieur ou égal à 7 caractères'
-  })
-  .max(15,{
-    message:'le mot de passe ne doit pas être supérieur à 15 caractères'
-  })
- })
 
 export default async function handler(req, res) {
   try {
     const secret="N33U8477474473"
     const [mail,password] = req.query.loginInfos
-    const validatedData = loginValidator.parse({mail,password});   
     const [results] = await executeQuery('CALL login(?)',[mail])
   // Vérifier les informations d'identification de l'utilisateur
+  
   if (results.length === 0) {
     return res.status(404).json({ message: 'Email introuvable' });
   }
