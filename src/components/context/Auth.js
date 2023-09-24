@@ -18,8 +18,12 @@ function SessionProvider(props) {
  fetchData() */
   async function decodeJWT(token) {
     try {
-      const decoded = jwt.decode(token);
-      return setSession(decoded);
+      if(token){
+        const decoded = jwt.decode(token);
+        return setSession(decoded);
+      }else{
+      return setSession('unlogged');
+      }
     } catch (error) {
       console.error('Error decoding JWT:', error);
       return setSession('unlogged');
@@ -28,9 +32,7 @@ function SessionProvider(props) {
 
   if (typeof window !== 'undefined') {
     const token = localStorage.getItem('token');
-    if (token) {
       decodeJWT(token);
-    }
   }
 }, [typeof window !== 'undefined' && localStorage.getItem('token')]);
 
