@@ -2,6 +2,7 @@ import Dashboard from '@/components/Dashboard/Home/Dashboard'
 import AdminSide from '@/components/Navs/AdminSide'
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react'
+import jwt from 'jsonwebtoken';
 
 function DashboardPage() {
   return (
@@ -16,19 +17,26 @@ function DashboardLayout({ page }) {
   const [active, setActive] = useState("active")
   const [margin, setMargin] = useState(60)
   const [auto, setAuto] = useState(12)
-
+  
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch('/api/verify');
-      const donnees = await res.json();
-      if (donnees.tokenDecod == undefined) {
-        return setAuto('unlogged')
-      } else {
-        setAuto(donnees.tokenDecod)
+    async function decodeJWT(token) {
+      try {
+        const decoded = jwt.decode(token);
+        return setAuto(decoded);
+      } catch (error) {
+        console.error('Error decoding JWT:', error);
+        return setAuto('unlogged');
       }
     }
-    fetchData()
-  }, []);
+  
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token');
+      if (token) {
+        decodeJWT(token);
+      }
+    }
+  }, [typeof window !== 'undefined' && localStorage.getItem('token')]);
+  
 
   const handleAside = (status) => {
     if (status) {

@@ -42,14 +42,14 @@ export default async function handler(req, res) {
             },
             secret
           );
-          const serialised = serialize('Cookie', token, {
+          /* const serialised = serialize('Cookie', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV !== 'development',
             sameSite: 'strict',
             maxAge: 60 * 60 * 24 * 30,
             path: '/',
           });
-          res.setHeader('Set-Cookie', serialised);
+          res.setHeader('Set-Cookie', serialised); */
           res.status(201).json({token, message: 'Success' });
   }catch(error){
     res.status(401).json({error,message:'validationError'});

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import jwt from 'jsonwebtoken';
 
 const SessionContext = React.createContext();
 
 function SessionProvider(props) {
     const [session, setSession] = useState()
   useEffect(() => {
-    async function fetchData() {
+    /* async function fetchData() {
         const res = await fetch('/api/verify');
          const donnees = await res.json();
        if(donnees.tokenDecod == undefined){
@@ -14,8 +15,24 @@ function SessionProvider(props) {
             setSession(donnees.tokenDecod)
         } 
     }
- fetchData()
-  }, []);
+ fetchData() */
+  async function decodeJWT(token) {
+    try {
+      const decoded = jwt.decode(token);
+      return setSession(decoded);
+    } catch (error) {
+      console.error('Error decoding JWT:', error);
+      return setSession('unlogged');
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    if (token) {
+      decodeJWT(token);
+    }
+  }
+}, [typeof window !== 'undefined' && localStorage.getItem('token')]);
 
   return (
     <SessionContext.Provider

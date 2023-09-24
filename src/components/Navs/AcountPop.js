@@ -4,7 +4,9 @@ import { useRouter } from 'next/router';
 function AcountPop({auto}) {
     const router = useRouter()
     const handleLoggout =  async () =>{
-        const response = await fetch(`/api/logout`);
+      localStorage.removeItem('token')
+      router.push('/login')
+        /* const response = await fetch(`/api/logout`);
     if (response.ok) {
       const data = await response.json();
       console.log(data)
@@ -13,10 +15,10 @@ function AcountPop({auto}) {
       }else{
         // console.log("No !!")
         router.push('/')
-      }
+      } 
     } else {
       console.log(`Erreur : ${response.status} ${response.statusText}`);
-    }
+    }*/
     }
   return (
     <>

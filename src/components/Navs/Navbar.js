@@ -34,7 +34,6 @@ function Navbar() {
   const handleSmsearch = () => {
     setSmSearch(smSearch => !smSearch);
   }
-
   const fetchSearches = async (search) => {
     const response = await fetch(`/api/results/${search}/0/10`)
     const data = await response.json()
@@ -125,7 +124,6 @@ function Navbar() {
               </button>
             </div>
             {!auto.session || auto.session === "unlogged" ?
-
               <div className="buttons flex flex-initial sm:flex space-x-3 sm:items-center sm:justify-center items-center justify-center w-full sm:w-64 h-full   ">
                 <Link href='/login' className="bg-blue-500 text-white font-bold rounded-lg w-auto h-8 px-5 py-3 flex flex-row items-center justify-center hover:bg-blue-600">Login</Link>
               </div>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -20,13 +20,13 @@ function Login() {
      setShowPassword(!showPassword)
   }
   const handleLogin = async (data) => {
-    console.log(data)
       setLoading(true)
       const response = await fetch(`/api/login/${data.mail}/${data.password}`);
       if (response.ok) {
         const data = await response.json();
           if(data){
-             router.push('/')
+            localStorage.setItem('token',data.token)
+            router.push('/')
           } 
         }
        else {
@@ -44,6 +44,7 @@ function Login() {
     password: Yup.string()
         .required("You must input a password !")
 })
+
   return (
     <>
 <div  className="flex justify-center">
