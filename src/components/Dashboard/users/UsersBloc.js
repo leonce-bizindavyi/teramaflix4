@@ -9,7 +9,16 @@ function UsersBloc() {
   const router = useRouter() 
   const [user, setUser]=useState(null)
   const [users, setUsers] = useState(null)
+  /* fetch('https://api.ipify.org?format=json')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Mon addresse ip est ',data.ip);
+  })
+  .catch(error => {
+    console.error("Erreur lors de la récupération de l'adresse IP:", error);
+  }); */
   useEffect(() => {
+    
     // get users to in database
     if (router.query.user) {
       const user = router.query.user
@@ -20,16 +29,15 @@ function UsersBloc() {
       if (data[0]) {
         setUsers(data[0])
       }
-      
     }
     fetchUsers()
     }
     
     
   }, [router]);
-  const handleActive = async (status)=>{
-    const response = await fetch(`/api/dash/users/active/${status}`);
-      const data = await response.json();
+  const handleActive = async (status,user)=>{
+    const response = await fetch(`/api/dash/users/active/${status}/${user}`);
+    const data = await response.json();
       console.log(data)
   }
   return (

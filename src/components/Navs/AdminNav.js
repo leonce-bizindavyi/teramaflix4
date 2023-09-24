@@ -14,7 +14,7 @@ function AdminNav({handleAside}) {
     fetchData();
 }, [auth]);
 if(auto == 'unlogged' ) return (router.push("http://localhost:3000/login"))
-else if(auto.Admin  !== 1 && auto.Admin != undefined) return (router.push("http://localhost:3000"))
+else if(auto.Admin  !== 1 && auto.Admin != undefined) return (router.push("/"))
 else 
   return (
     <>

@@ -7,7 +7,12 @@ function TimeAgo(Created){
   return period
 }
 function Details({handleActive,users}) {  
-const [isActive,setIsActive]=useState(true)
+const [isActive,setIsActive]=useState(false)
+useEffect(() => {
+  if(users && users.Actif === 1){
+    setIsActive(true)
+  }
+}, [users])
 
 if (!users) {
   return null
@@ -35,7 +40,7 @@ const period = TimeAgo(users.Created_at)
                 <div  className=""><span>Channel</span> : <span>{users.PageName}</span></div>
                 <div  className=""><span>Type</span> : <span>Music</span></div>
                 <div  className=""><span>Joined at</span> : <span> {period}</span></div>
-                <div  className=""><span>Statut</span> : {users.Actif === 1 ? <span  className="status text-green-500 ">Enabled</span> : <span   className="status text-red-500 ">Disabled</span>} </div>
+                <div  className=""><span>Statut</span> : {isActive ? <span  className="status text-green-500 ">Enabled</span> : <span   className="status text-red-500 ">Disabled</span>} </div>
             </div>
             <div  className="btn  w-[25%] xl:w-[50%] ">
               <div  className="bg-gray-100 p-4 flex flex-col xl:flex-row justify-between items-center rounded-2xl space-y-5">
@@ -49,9 +54,9 @@ const period = TimeAgo(users.Created_at)
                     </svg>
                     </Link>  
                     { isActive ?
-                      <button onClick={()=>setIsActive(!isActive)} className="btnStatu text-lg xl:text-xl font-semibold cursor-pointer bg-[#3378FF] text-white shadow-xl p-1 xl:p-2 rounded-xl">Desactive</button>
+                      <button onClick={()=>{setIsActive(!isActive); handleActive(!isActive,users.user_id)}} className="btnStatu text-lg xl:text-xl font-semibold cursor-pointer bg-[#3378FF] text-white shadow-xl p-1 xl:p-2 rounded-xl">Desactive</button>
                     :
-                      <button onClick={()=>setIsActive(!isActive)} className="btnStatu text-lg xl:text-xl font-semibold cursor-pointer bg-[#3378FF] text-white shadow-xl p-1 xl:p-2 rounded-xl">Active</button>
+                      <button onClick={()=>{setIsActive(!isActive); handleActive(!isActive,users.user_id)}} className="btnStatu text-lg xl:text-xl font-semibold cursor-pointer bg-[#3378FF] text-white shadow-xl p-1 xl:p-2 rounded-xl">Active</button>
                     }
               </div>
             </div>
