@@ -71,6 +71,7 @@ export default async function handler(req, res) {
         const userPassword=req.body.password
         const uniid = uuidv4()
         const uName=userName+' '+userPrenom
+
         const isUnique=await checkEmailUniqueness(userMail);
         if(isUnique!=="true"){  
         res.status(402).json({response:{data:'errorMail',message:'cet email est déjà utilisé avec un  utre utilisateur.'}});
@@ -103,7 +104,9 @@ export default async function handler(req, res) {
             };
             transporter.sendMail(mailOptions, function(error, info){
               if (error) {
+                console.log(error);
               } else {
+                console.log('E-mail envoyé: ' + info.response);
               }
             });
 

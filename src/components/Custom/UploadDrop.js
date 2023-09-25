@@ -42,7 +42,6 @@ function UploadDrop() {
             }
       }
       fetchVideos()
-      fetchUploads()
     }   
   }, [auth])
    const handleUpload = async (videos) => {
@@ -73,7 +72,7 @@ function UploadDrop() {
     <>
        <div className="vidManager flex flex-row justify-between">
           <h2 className="text-[1.5rem] font-semibold">Video Manager</h2>
-          <button onClick={()=>handleaddvid(true)} className="searchBtn flex flex-row justify-center items-center bg-blue-500 h-10 hover:bg-blue-900 duration-1000  px-4 md:py-2 md:mr-6 mt-2 text-sm md:text-base font-semibold   rounded-l-full rounded-r-none  text-white  ">
+          <button onClick={()=>handleaddvid(true)} className="addVid flex flex-row justify-center items-center bg-blue-500 h-10 hover:bg-blue-900 duration-1000  px-4 md:py-2 md:mr-6 mt-2 text-sm md:text-base font-semibold   rounded-l-full rounded-r-none  text-white  ">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
               <path strokeLinejoin="evenodd" d="M12 5.25a.75.75 0 01.75.75v5.25H18a.75.75 0 010 1.5h-5.25V18a.75.75 0 01-1.5 0v-5.25H6a.75.75 0 010-1.5h5.25V6a.75.75 0 01.75-.75z" clipRule="evenodd" />
             </svg>                  

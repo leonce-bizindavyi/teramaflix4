@@ -15,22 +15,23 @@
 body {
     overflow-x: hidden;
 }
+
 .aside {
     position: fixed;
-    top: 10%;
+    top: 60px;
     width: 20%;
     transition: .3s;
-
 }
 .aside.active {
     width: 80px;
     height: 100vh;
     position: fixed;
-    top: 10%;
+    top: 60px;
     left: 0%;
     background-color: #fff;
 
 }
+
 .aside.active div h3 {
     display: none;
 }
@@ -41,11 +42,12 @@ body {
 .aside div {
     padding: 0 1.5rem ;
     cursor: pointer;
+    margin-bottom: 1rem;
 }
 .aside div svg {
     width: 2rem;
     height: 2rem;
-    color: rgb(100 116 139);
+    color: #3a82f5 ;
 
 }
 .aside div h3{
@@ -69,7 +71,7 @@ body {
     transform: translateY(-10px);
     transition: 0.2s all linear;
 }
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .container {
         margin-left: 100px;
     }
@@ -83,24 +85,25 @@ body {
     .aside.active {
         left: 0%;
     }
-}
-@media (max-width: 768px) {
+} */
+
+/* @media (max-width: 768px) {
     .container {
         margin-left: 0px;
     }
     .aside {
-        top: 8.5%;
+        top: 10px;
         width: 250px;
         height: 100vh;
         position: fixed;
     }
     .aside.active {
-        top: 8.5%;
+        top: 30px;
         left: -25%;
     }
 
 
-}
+}  */
 
 @-webkit-keyframes placeHolderShimmer {
   0% {

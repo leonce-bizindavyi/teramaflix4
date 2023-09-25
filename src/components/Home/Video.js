@@ -8,33 +8,33 @@ function Video({video}) {
   return (
     <>
        <div className={styles.videocontainer}>
-          <div className="imag w-[100%] h-[170px] rounded  overflow-hidden">
+          <div className="imag w-[100%] sm:h-[170px] h-[250px]  sm:rounded  overflow-hidden">
              {
               video.Short == 1 ?
               <Link href={`/short`}> 
-                <Image src={`/Thumbnails/`+ video.Image} width={100} height={100} className="w-[100%]  h-[100%] object-cover" alt="videos"/>
+                <Image src={`/Thumbnails/`+ video.Image} width={100} height={100} className="w-[100%]  h-[100%] object-fit" alt="videos"/>
               </Link>
               :
               <Link href={`/Watch?v=${video.uniid}`}> 
-                <Image src={`/Thumbnails/`+ video.Image} width={100} height={100} className="w-[100%]  h-[100%] object-cover" alt="videos"/>
+                <Image src={`/Thumbnails/`+ video.Image} width={100} height={100} className="w-[100%]  h-[100%] object-fit" alt="videos"/>
               </Link>
              }
           </div>
-          <h1 className="text-sm font-medium">{video.Title} </h1><br></br>
+          <h1 className="font-bold text-slate-900 text-lg ml-2 mb-2 sm:ml-0">{video.Title} </h1>
             <Link href={`/profile?c=${video.Uuid}`}>
-            <div className="flex gap-2 justify-start mb-4">
+            <div className="flex gap-2 justify-start mb-4 ml-2 sm:ml-0">
               {video.Photo ?
-              <Image width={80} height={80} className="lg:w-10 w-12 lg:h-10 h-8 my-1 ml-15 rounded-full " src={`/Thumbnails/`+ video.Photo} alt='profile'/>
+              <Image width={80} height={80} className=" w-10  h-10 my-1 ml-15 rounded-full " src={`/Thumbnails/`+ video.Photo} alt='profile'/>
               :
-              <Image width={80} height={80} className="lg:w-10 w-12 lg:h-10 h-8 my-1 ml-15 rounded-full " src="/img/logo.png" alt='profile'/>
+              <Image width={80} height={80} className=" w-10  h-10 my-1 ml-15 rounded-full " src="/img/logo.png" alt='profile'/>
               }
              
              
                   
             <div className="flex flex-col  space-y-2">
                 <div className="right-5">
-                    <div className="text-sm font-medium">{video.PageName}</div>
-                    <span className="text-sm">{video.Views} Views  {period}</span>
+                    <div className="text-md text-slate-900 opacity-90  font-bold">{video.PageName}</div>
+                    <span className="text-xs text-slate-900 opacity-70 font-semibold">{video.Views} Views  {period}</span>
                 </div>
             </div>
             </div>

@@ -26,7 +26,6 @@ function Results() {
   
   return (
     <>
-    <iframe data-aa='2259101' src='//ad.a-ads.com/2259101?size=728x90' style={{width:'100%', height:'100%', border:0+'px', padding:0, overflow:'hidden', backgroundColor: 'transparent'}}></iframe>
     <InfiniteScroll
     dataLength={videos.length}
     next={getMoreResults}

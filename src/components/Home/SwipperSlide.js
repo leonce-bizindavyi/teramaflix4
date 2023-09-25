@@ -8,7 +8,6 @@ import 'swiper/css/navigation';
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Slide from './Slide';
-import SlideSense from '../Adsense/SlideSense';
 
 export default function SwipperSlide() {
   const [videos, setVideos] = useState([])
@@ -50,18 +49,11 @@ export default function SwipperSlide() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-
+        
         {
-            videos.map((video)=>{
+            videos.map(video=>{
                 return (
-                  <>
-                  <SwiperSlide  key={video.ID}><Slide key={video.ID} video={video} /></SwiperSlide>
-                  {/* {id == 5 ? 
-                   <SwiperSlide  key={video.ID}><SlideSense /> </SwiperSlide>
-                  :
-                  <SwiperSlide  key={video.ID}><Slide video={video} /></SwiperSlide>
-                  } */}
-                  </>
+                    <SwiperSlide  key={video.ID}><Slide video={video} /></SwiperSlide>
                 )
             })
         }

@@ -3,7 +3,7 @@ import Link from 'next/link'
 function Sidebar({sideAll}) {
     return (
         <>
-          <div className={`aside  ${sideAll}  pt-6  bg-white h-full z-20 md:flex flex-col space-y-6`}>
+          <div className={`aside  ${sideAll}  pt-5 border-4 rounded-md border-x-white border-t-blue-500  bg-white h-full z-20 md:flex flex-col space-y-6crans `}>
           <Link href="/">
             <div className="l hover:bg-gray-200 rounded h-[2.5rem] flex flex-row space-x-4 items-center pl-2">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" >
@@ -15,7 +15,7 @@ function Sidebar({sideAll}) {
           </Link>
           <Link href="/categorie">
             <div className=" hover:bg-gray-200 rounded h-[2.5rem] flex flex-row space-x-4 items-center pl-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"  >
                     <path strokeLinejoin="evenodd" d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 11-9 0V4.125zm4.5 14.25a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" clipRule="evenodd" />
                     <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
                   </svg>
@@ -42,7 +42,7 @@ function Sidebar({sideAll}) {
             </Link>
             <Link href="/short">
               <div className=" hover:bg-gray-200 rounded h-[2.5rem] flex flex-row space-x-4 items-center pl-2">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className='h-[4rem] w-[1rem]' >
                 <path d="M21 3H3a2.002 2.002 0 00-2 2v14a2.002 2.002 0 002 2h18a2.002 2.002 0 002-2V5a2.002 2.002 0 00-2-2zM9.5 17.5v-11l8 5.5-8 5.5z"/>
               </svg>
                 <h3 className="text-xsm lg:text-lg font-medium hover:text-blue-500">Short</h3>

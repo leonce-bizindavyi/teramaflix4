@@ -6,9 +6,8 @@ import { blue } from '@mui/material/colors';
 import { LoadContext } from './context/loading';
 export default function LinearIndeterminate() {
   const {loaded} = useContext(LoadContext)
-  const [load, setLoad] = useState(true)
+  const [load, setLoad] = useState(false)
   useEffect(() => {
-    console.log(loaded)
     setLoad(loaded)
   }, [loaded])
   
