@@ -350,7 +350,7 @@ if (!videoprops) return null
       <video ref={videoRef} 
        onVolumeChange={(e)=>setControls({...controls,volume:e.currentTarget.volume})} 
        onTimeUpdate={(e)=>{handleCurrentTime(e),setControls({...controls,currentTime:e.currentTarget.currentTime})}}  
-       src={`/Videos/${videoprops.Video}`} onEnded={()=>handleNext(videoprops.NextVideo)} className='rounded h-[420px]' 
+       src={`/Videos/${videoprops.Video}`} onEnded={()=>handleNext(videoprops.NextVideo)} className='rounded h-[200px] sm:h-[250px] md:h-[370px] lg:h-[420px]  ' 
        autoPlay/>
     </div> 
     </>

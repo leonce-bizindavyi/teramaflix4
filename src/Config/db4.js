@@ -10,7 +10,6 @@ const pool = createPool({
   database: 'terama_20819u',
   connectionLimit: 50, // Nombre maximal de connexions
 });
-
 // Fonction pour réinitialiser le délai d'expiration d'une connexion
 const resetConnectionTimeout = (connection) => {
   if (connection.timeoutId) {
