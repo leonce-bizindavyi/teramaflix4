@@ -7,7 +7,7 @@ import Image from 'next/image'
 import SearchDrop from './SearchDrop'
 import SmDrop from './smDrop'
 import AcountPop from './AcountPop'
-
+import LinearIndeterminate from '../Bar'
 function Navbar() {
   const router = useRouter()
   const auto = useContext(SessionContext)
@@ -92,7 +92,7 @@ function Navbar() {
 
   return (
     <>
-      <header className=" relative h-max" >
+      <header className="relative h-max" >
         <div className="headercontainer shadow-lg  lg:pl-2  w-[100%] bg-white fixed right-0 lef-0 top-0 z-20 ">
           <nav className="flex sm:flex-row  max-h-16 sm:sticky sm:top-0 flex-row sm:items-center sm:justify-between items-center justify-between    space-y-2 pb-2   ">
             <div className="flex flex-row justify-center items-center  w-[40%] md:w-[30%] lg:w-[20%] relative  overflow-hidden ">
@@ -102,7 +102,6 @@ function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
               </div>
-
               <div className="logo flex-initial flex flex-col sm:flex-row sm:items-center sm:justify-start w-10 h-11 sm:w-64 sm:h-full items-center justify-center sm:static ml-/10 ">
                 <Link href="/"> <Image width={80} height={80} src="/logo/TeramaFlixpic.png" className=" w-8 h-8 sm:w-[4rem] sm:h-[4rem] my-1" alt="logo" /></Link>
                 <Link href="/"> <Image width={90} height={90} src="/logo/TeramaFlixnam.png" alt="logo" className=" hidden sm:block w-[4rem] h-[1rem] sm:w-[9rem] sm:h-[1rem] " /></Link>
@@ -110,6 +109,7 @@ function Navbar() {
 
 
             </div>
+
             <div className="searchDiv sm:flex flex-1  sm:justify-center sm:items-center lg:w-64 lg:h-full max-w-max items-center justify-center mr-6 p-0">
               <input id="search" type="search"
                 className=" min-w-min h-9 border-none ring-2 ring-blue-700  rounded-l-full pl-5 pr-5 hidden md:block "
@@ -166,12 +166,8 @@ function Navbar() {
                         src="/img/logo.png" alt='profile' onClick={() => handleAcPop()} />
                   }
                 </button>
-
               </div>
             }
-
-
-
           </nav>
         </div>
       </header>

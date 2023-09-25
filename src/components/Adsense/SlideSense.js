@@ -3,7 +3,7 @@ import React from 'react'
 function SlideSense() {
   return (
     <>
-       <ins class="adsbygoogle"
+       <ins className="adsbygoogle"
      data-ad-client="ca-pub-8097044169349946"
      data-ad-slot="2677841718"
      data-ad-format="auto"

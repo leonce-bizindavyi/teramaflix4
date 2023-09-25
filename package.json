@@ -9,6 +9,9 @@
     "start": "set NODE_ENV=production && node server.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.10",
     "animate.css": "^4.1.1",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.0",

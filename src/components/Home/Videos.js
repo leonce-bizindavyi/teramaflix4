@@ -4,8 +4,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import styles from '@/styles/Home.module.css'
 import { SessionContext } from '../context/Auth';
 import Adsense from '../Adsense/Adsense';
+import { LoadContext } from '../context/loading';
+
 function Videos() {
   const auto = useContext(SessionContext)
+  const {setLoading} = useContext(LoadContext)
   const [videos, setVideos] = useState(null)
   const [hasMore,setHasMore]=useState(true)
   
@@ -23,9 +26,10 @@ function Videos() {
     const response = await fetch(`/api/posts/${user}/0/6`)
     const data = await response.json()
     if(data[0]) setVideos(data)
+    setLoading(true)
   }
 
-if(videos==null) return (<div className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>Loading ...</div>)
+if(videos==null) return null
 
 const getMoreVideos=async()=>{
   if(auto.session === 'unlogged'){
@@ -44,7 +48,6 @@ const getMoreVideos=async()=>{
   
   return (
     <>
-   
     <InfiniteScroll
     dataLength={videos.length}
     next={getMoreVideos}
@@ -54,9 +57,9 @@ const getMoreVideos=async()=>{
       <p style={{textAlign:"center"}}><b>You have seen it all</b></p>
     }>
     <div id="load_data" className={`${styles.filmcontainer} mt-3  gap-[1rem] `}>
-    <div className={styles.videocontainer}>
-    <Adsense />
-      </div>
+   {/* <div className={styles.videocontainer}>
+     <Adsense /> 
+      </div>*/}
       {
         videos?.map(video=>{
           return <Video key={video.ID} video={video} />

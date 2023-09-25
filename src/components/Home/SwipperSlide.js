@@ -52,14 +52,15 @@ export default function SwipperSlide() {
       >
 
         {
-            videos.map((video,id)=>{
+            videos.map((video)=>{
                 return (
                   <>
-                  {id == 5 ? 
+                  <SwiperSlide  key={video.ID}><Slide key={video.ID} video={video} /></SwiperSlide>
+                  {/* {id == 5 ? 
                    <SwiperSlide  key={video.ID}><SlideSense /> </SwiperSlide>
                   :
                   <SwiperSlide  key={video.ID}><Slide video={video} /></SwiperSlide>
-                  }
+                  } */}
                   </>
                 )
             })
