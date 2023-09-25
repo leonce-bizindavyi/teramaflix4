@@ -281,7 +281,6 @@ if (!videoprops) return null
     <>
     <Title title={`${videoprops.Title} - TeramaFlix`} />
     <div className={`video-container w-full lg:w-[100%] rounded`} data-volume-level="high">
-      
       <div className="video-controls-container">
         <div className="timeline-container">
           <div className="timeline">
@@ -351,7 +350,7 @@ if (!videoprops) return null
       <video ref={videoRef} 
        onVolumeChange={(e)=>setControls({...controls,volume:e.currentTarget.volume})} 
        onTimeUpdate={(e)=>{handleCurrentTime(e),setControls({...controls,currentTime:e.currentTarget.currentTime})}}  
-       src={`/Videos/${videoprops.Video}`} onEnded={()=>handleNext(videoprops.NextVideo)} className='rounded' 
+       src={`/Videos/${videoprops.Video}`} onEnded={()=>handleNext(videoprops.NextVideo)} className='rounded h-[420px]' 
        autoPlay/>
     </div> 
     </>
