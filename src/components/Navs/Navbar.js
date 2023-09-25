@@ -262,11 +262,10 @@ function Navbar(props) {
         
     <div id="searchedprop" className=" z-20 left-[40%] mt-14 w-[20%] sm:top-0 fixed  h-auto  overflow-hide bg-blue-100 rounded-md"></div>
     <div id="setting" style={{display:"flex",marginRight:70+"px",background:"black"}}>
-
     </div> 
     
     <Sidebar sideAll={sideAll} />
-    {acPop ? <AcountPop auto={auto.session} /*  channel = {auto.session.Page} */ />:null }
+    {acPop ? <AcountPop auto={auto.session} />:null }
     {searchd == "" ? null :
     <>
      <SearchDrop searches={searches} searched={searchd} />

@@ -7,6 +7,7 @@ const pool = createPool({
   host: 'www.db4free.net',
   user: 'terama_20819u',
   password: 'Promotion@11',
+  database: 'terama_20819u',
   connectionLimit: 50, // Nombre maximal de connexions
 });
 

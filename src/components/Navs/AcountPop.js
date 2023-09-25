@@ -10,7 +10,6 @@ function AcountPop({auto}) {
       if(data.name===true){
         router.push('/login')
       }else{
-        // console.log("No !!")
         router.push('/')
       }
     } else {
@@ -19,7 +18,7 @@ function AcountPop({auto}) {
     }
   return (
     <>
-     <div ref={popupRef}  id="setMenu" className="absolute right-0 lg:fixed top-10 z-30 mt-4 w-60 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:right-0 lg:right-0" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
+     <div id="setMenu" className="absolute right-0 lg:fixed top-10 z-30 mt-4 w-60 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:right-0 lg:right-0" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
             <div className="py-1 w-full" role="none">
             {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
             <div className="flex flex-row items-center hover:bg-gray-300 hover:border-1 hover:border-gray-400 w-100 justify-start px-3">
