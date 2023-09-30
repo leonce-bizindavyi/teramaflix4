@@ -8,7 +8,7 @@ export default function LinearIndeterminate() {
   const {loaded} = useContext(LoadContext)
   const [load, setLoad] = useState(false)
   useEffect(() => {
-    setLoad(loaded)
+    setLoad(false)
   }, [loaded])
   
   return (

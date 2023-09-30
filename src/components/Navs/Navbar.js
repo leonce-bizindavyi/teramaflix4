@@ -7,6 +7,7 @@ import Image from 'next/image'
 import SearchDrop from './SearchDrop'
 import SmDrop from './smDrop'
 import AcountPop from './AcountPop'
+import { useRef} from 'react';
 
 function Navbar(props) {
   const router = useRouter()
@@ -21,6 +22,9 @@ function Navbar(props) {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [notifCounter, setNotifCounter] = useState(0);
   const [liste_notification, setliste] = useState([]);
+  const compoRef = useRef(null);
+  const sideBarRef = useRef(null);
+  const notifRef = useRef(null);
 
 
   const handleSideAll = () => {
@@ -60,6 +64,28 @@ function Navbar(props) {
     router.push(`/results?results=${searchd}`)
   }
 
+ //evenement pour  cacher le box d'account en cliquant n'importe où dans le DOM
+  const cacher_composant = (event) => {
+    if (compoRef.current && !compoRef.current.contains(event.target)) {
+      setAcPop(false);
+    }
+  }; 
+
+  //evenement pour  cacher siderbar et floue en cliquant n'importe où dans le DOM
+  const cacher_sideBarAll = (event) => {
+    if (sideBarRef.current && !sideBarRef.current.contains(event.target)) {
+      setSideAll('active');
+      props.sideAllOpened(false);
+    }
+  }; 
+
+  //evenement pour  cacher composant des notifications en cliquant n'importe où dans le DOM
+  const cacher_Notifications = (event) => {
+    if (notifRef.current && !notifRef.current.contains(event.target)) {
+      setIsNotificationOpen(false);
+    }
+  }; 
+
   useEffect(() => {
     const available_notifications = async () => {
       try {
@@ -79,6 +105,32 @@ function Navbar(props) {
     }, 60000);
     return () => clearInterval(interval);
   }, []); 
+
+//useEffect pour cacher le box d'account en cliquant n'importe où dans le DOM
+  useEffect(() => {
+    document.addEventListener('click', cacher_composant);
+
+    return () => {
+      document.removeEventListener('click', cacher_composant);
+    };
+  }, []);
+//useEffect pour  cacher siderbar et floue en cliquant n'importe où dans le DOM
+  useEffect(() => {
+    document.addEventListener('click', cacher_sideBarAll);
+
+    return () => {
+      document.removeEventListener('click', cacher_sideBarAll);
+    };
+  }, []);
+
+  //useEffect pour  pour  cacher composant des notifications en cliquant n'importe où dans le DOM
+  useEffect(() => {
+    document.addEventListener('click', cacher_Notifications);
+
+    return () => {
+      document.removeEventListener('click', cacher_Notifications);
+    };
+  }, []);
      
   
 
@@ -107,10 +159,10 @@ function Navbar(props) {
             <nav className="flex sm:flex-row  max-h-16 sm:sticky sm:top-0 flex-row sm:items-center sm:justify-between items-center justify-between     pb-2   ">
                 <div className="flex   flex-row justify-center items-center  w-[40%] md:w-[30%] lg:w-[20%] relative  overflow-hidden ">
                      
-                    <div onClick={handleSideAll}  className="menuCloser cursor-pointer z-50 abso/lute lef/t-0 sm:static absolute left-1 ">
+                    <div ref={sideBarRef} onClick={handleSideAll}  className="menuCloser cursor-pointer z-50 abso/lute lef/t-0 sm:static absolute left-1 ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7 md:w-10 md:h-10 font-bold text-purple-700">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                          </svg>                      
+                        </svg>                      
                     </div>
                     
                     <div className="logo ml-4 flex-initial flex flex-col sm:flex-row sm:items-center sm:justify-start w-10 h-11 sm:w-64 sm:h-full items-center justify-center sm:static ml-/10 ">
@@ -153,30 +205,34 @@ function Navbar(props) {
     </Link>
 
 
-    <button className="p-0 ml-4">
-      <div className="hover:bg-gray-200 rounded-full w-11 h-11 relative">
-        <svg  onClick={handleNotificationClick} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="black" className="w-full h-full ">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-        </svg>
-        {/* {notifCounter > 0 && ( */}
-          <span className="absolute top-2 right-[8%] flex justify-center items-center   bg-red-500 text-white w-fit p-1 h-4  rounded-full text-[80%]">
-            {10}
-          </span>
-        {/* )} */}
-      </div>
-    </button>
+    <div ref={notifRef} className='w-8 h-8 rounded-full ' >
+        <button className="p-0">
+          <div className="hover:bg-gray-200 rounded-full w-11 h-11 relative">
+            <svg  onClick={handleNotificationClick} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="black" className="w-full h-full ">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+            </svg>
+            {/* {notifCounter > 0 && ( */}
+              <span className="absolute top-2 right-[8%] flex justify-center items-center   bg-red-500 text-white w-fit p-1 h-4  rounded-full text-[80%]">
+                {10}
+              </span>
+            {/* )} */}
+          </div>
+        </button>
+    </div>
 
 
-   <button id="image" className="p-0">
-    {
-        auto.session.Photo ?
-        <Image width={80} height={80}  className="w-8 h-8 rounded-full" title={`${auto.session.PageName}`}
-        src={`/Thumbnails/${auto.session.Photo}`} alt='profile' onClick={()=>handleAcPop()}/>
-        :
-        <Image width={80} height={80}  className="w-8 h-8 rounded-full" title={`${ auto.session.PageName}`}
-        src="/img/logo.png" alt='profile' onClick={()=>handleAcPop()}/>
-    }
-   </button>
+   <div ref={compoRef} className='w-8 h-8 rounded-full' >
+      <button id="image" className="p-0">
+        {
+            auto.session.Photo ?
+            <Image width={80} height={80}  className="w-8 h-8 rounded-full" title={`${auto.session.PageName}`}
+            src={`/Thumbnails/${auto.session.Photo}`} alt='profile' onClick={()=>handleAcPop()}/>
+            :
+            <Image width={80} height={80}  className="w-8 h-8 rounded-full" title={`${ auto.session.PageName}`}
+            src="/img/logo.png" alt='profile' onClick={()=>handleAcPop()}/>
+        }
+      </button>
+   </div>
         
   </div>
 }
@@ -200,7 +256,30 @@ function Navbar(props) {
           <div className="py-1 w-full p-4" role="none">
             <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
               <div className="notificationList">
-                {liste_notification.map((notification) => (
+
+
+              <li  className="pt-3 pb-0 sm:pt-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-shrink-0">
+                        <Image width={80} height={80} 
+                          className="w-10 h-10 rounded-full" 
+                          src={`/img/notify.png`}
+                          alt='notice'/>
+                        
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                           Prenom
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                          654545545
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+
+                {/* {liste_notification.map((notification) => (
                   <li key={notification.id} className="pt-3 pb-0 sm:pt-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex-shrink-0">
@@ -227,7 +306,7 @@ function Navbar(props) {
                       </div>
                     </div>
                   </li>
-                ))}
+                ))} */}
               </div>
             </ul>
           </div>

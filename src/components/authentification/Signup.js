@@ -175,10 +175,10 @@ function Signup() {
            </Formik>
            {inserted ? <span className="">inserted </span> : null } 
            {/* <!--fin boutton valider--> */}
-           <div className="ml-8 font-semibold text-md">
-              <p className='text-md sm:text-2xl lg:text-sm font-semibold text-blue-700'>Already have an account?  <Link href="/login" className="text-purple-600 hover:text-purple-700 focus:outline-none focus:underline transition ease-in-out duration-150">Sign in !</Link></p>
-            </div>
-           <div  className="h-0.5"></div>
+           {/* <div className="ml-8 font-semibold text-md ">
+              <p className='text-md sm:text-2xl lg:text-sm font-semibold text-blue-700'>Already have an account?  <Link href="/login" className="text-blue-700 hover:text-purple-700 focus:outline-none focus:underline transition ease-in-out duration-150">Sign in !</Link></p>
+            </div> */}
+          <div  className="h-0.5"></div>
         </div>
     </div>
  </div>
